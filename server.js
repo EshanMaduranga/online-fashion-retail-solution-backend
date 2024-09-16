@@ -3,6 +3,9 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 require('dotenv').config()
+const cookieParser = require("cookie-parser");
+const cloudinary = require("cloudinary").v2;
+const Multer = require("multer");
 
 const router = require("./router");
 const auth = require("./middleware/auth.js");
@@ -16,8 +19,27 @@ const inquiryRouter = require("./inquiryManagement/router/inquiryRouter.js");
 
 const uri = process.env.MONGODB_URI
 
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+  });
+  
+  const storage = new Multer.memoryStorage();
+  const upload = Multer({
+    storage,
+  });
+  
+  async function handleUpload(file) {
+    const res = await cloudinary.uploader.upload(file, {
+      resource_type: "auto",
+    });
+    return res;
+  }
+
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 const connect = async () => {
   try {
