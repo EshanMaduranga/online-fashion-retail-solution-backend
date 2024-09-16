@@ -4,6 +4,16 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require('dotenv').config()
 
+const router = require("./router");
+const auth = require("./middleware/auth.js");
+const stdRouter = require("./studentRouter.js");
+const cartRouter = require("./cartRouter.js");
+const orderRouter = require("./orderRouter.js");
+const commentRouter = require("./commentRouter.js");
+const userRouter = require("./UserManagement/routes/userRouter.js");
+const authRouter = require("./authRoute.js");
+const inquiryRouter = require("./inquiryManagement/router/inquiryRouter.js");
+
 const uri = process.env.MONGODB_URI
 
 app.use(cors());
