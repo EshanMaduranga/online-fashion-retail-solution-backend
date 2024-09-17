@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-require('dotenv').config()
+require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const cloudinary = require("cloudinary").v2;
 const Multer = require("multer");
@@ -17,25 +17,25 @@ const userRouter = require("./UserManagement/routes/userRouter.js");
 const authRouter = require("./authRoute.js");
 const inquiryRouter = require("./inquiryManagement/router/inquiryRouter.js");
 
-const uri = process.env.MONGODB_URI
+const uri = process.env.MONGODB_URI;
 
 cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET,
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
+
+const storage = new Multer.memoryStorage();
+const upload = Multer({
+  storage,
+});
+
+async function handleUpload(file) {
+  const res = await cloudinary.uploader.upload(file, {
+    resource_type: "auto",
   });
-  
-  const storage = new Multer.memoryStorage();
-  const upload = Multer({
-    storage,
-  });
-  
-  async function handleUpload(file) {
-    const res = await cloudinary.uploader.upload(file, {
-      resource_type: "auto",
-    });
-    return res;
-  }
+  return res;
+}
 
 app.use(cors());
 app.use(express.json());
@@ -56,4 +56,16 @@ const server = app.listen(3001, "127.0.0.1", () => {
   console.log("server is lisining to port: ", server.address().port);
 });
 
-
+app.post("/upload", upload.single("my_file"), async (req, res) => {
+  try {
+    const b64 = Buffer.from(req.file.buffer).toString("base64");
+    let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+    const cldRes = await handleUpload(dataURI);
+    res.json(cldRes);
+  } catch (error) {
+    console.log(error);
+    res.send({
+      message: error.message,
+    });
+  }
+});
