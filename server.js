@@ -6,6 +6,7 @@ require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const cloudinary = require("cloudinary").v2;
 const Multer = require("multer");
+const busboy = require("busboy");
 
 const router = require("./router");
 const auth = require("./middleware/auth.js");
@@ -16,6 +17,10 @@ const commentRouter = require("./commentRouter.js");
 const userRouter = require("./UserManagement/routes/userRouter.js");
 const authRouter = require("./authRoute.js");
 const inquiryRouter = require("./inquiryManagement/router/inquiryRouter.js");
+const empLoginRouter = require("./EmployeeManagement/route/login.route.js");
+const taskRouter = require("./EmployeeManagement/route/task.route.js");
+const attendanceRouter = require("./EmployeeManagement/route/attendance.route.js");
+const employeeRouter = require("./EmployeeManagement/route/employee.route.js");
 
 const uri = process.env.MONGODB_URI;
 
@@ -83,3 +88,11 @@ app.use("/api/auth", authRouter);
 //inquiry management
 app.use("/api/comment", commentRouter);
 app.use("/api/inquiry", inquiryRouter);
+
+//employee management
+app.use("/api/emp/login", empLoginRouter);
+app.use("/api/emp", employeeRouter);
+app.use("/api/tasks", taskRouter);
+app.use("/api/attendance", attendanceRouter);
+
+
