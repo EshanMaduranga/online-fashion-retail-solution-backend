@@ -21,6 +21,9 @@ const empLoginRouter = require("./EmployeeManagement/route/login.route.js");
 const taskRouter = require("./EmployeeManagement/route/task.route.js");
 const attendanceRouter = require("./EmployeeManagement/route/attendance.route.js");
 const employeeRouter = require("./EmployeeManagement/route/employee.route.js");
+const suppliersRouter = require("./inventoryStockSupplierManagement/routes/supplier.route.js");
+const inventoryRouter = require("./inventoryStockSupplierManagement/routes/inventory.route.js");
+const stockRouter = require("./inventoryStockSupplierManagement/routes/stock.route.js");
 
 const uri = process.env.MONGODB_URI;
 
@@ -75,7 +78,6 @@ app.post("/upload", upload.single("my_file"), async (req, res) => {
   }
 });
 
-
 //user management
 app.use("/api", router);
 app.use("/api/cart", cartRouter);
@@ -83,7 +85,6 @@ app.use("/api/order", orderRouter);
 app.use("/api/student", auth, stdRouter);
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
-
 
 //inquiry management
 app.use("/api/comment", commentRouter);
@@ -95,4 +96,7 @@ app.use("/api/emp", employeeRouter);
 app.use("/api/tasks", taskRouter);
 app.use("/api/attendance", attendanceRouter);
 
-
+//inventory management
+app.use("/api/suppliers", suppliersRouter);
+app.use("/api/inventory", inventoryRouter);
+app.use("/api/stock", stockRouter);
