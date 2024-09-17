@@ -69,3 +69,17 @@ app.post("/upload", upload.single("my_file"), async (req, res) => {
     });
   }
 });
+
+
+//user management
+app.use("/api", router);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
+app.use("/api/student", auth, stdRouter);
+app.use("/api/user", userRouter);
+app.use("/api/auth", authRouter);
+
+
+//inquiry management
+app.use("/api/comment", commentRouter);
+app.use("/api/inquiry", inquiryRouter);
