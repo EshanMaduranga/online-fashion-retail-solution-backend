@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Supplier = require('../models/supplier.model');
+const Supplier = require('../models/supplierModel');
 
 // Retrieve all suppliers
 router.get('/', async (req, res) => {

@@ -16,13 +16,13 @@ const commentRouter = require("./commentRouter.js");
 const userRouter = require("./UserManagement/routes/userRouter.js");
 const authRouter = require("./authRoute.js");
 const inquiryRouter = require("./inquiryManagement/router/inquiryRouter.js");
-const empLoginRouter = require("./EmployeeManagement/route/login.route.js");
-const taskRouter = require("./EmployeeManagement/route/task.route.js");
-const attendanceRouter = require("./EmployeeManagement/route/attendance.route.js");
-const employeeRouter = require("./EmployeeManagement/route/employee.route.js");
-const suppliersRouter = require("./inventoryStockSupplierManagement/routes/supplier.route.js");
-const inventoryRouter = require("./inventoryStockSupplierManagement/routes/inventory.route.js");
-const stockRouter = require("./inventoryStockSupplierManagement/routes/stock.route.js");
+const empLoginRouter = require("./EmployeeManagement/route/loginRoute.js");
+const taskRouter = require("./EmployeeManagement/route/taskRoute.js");
+const attendanceRouter = require("./EmployeeManagement/route/attendanceRoute.js");
+const employeeRouter = require("./EmployeeManagement/route/employeeRoute.js");
+const suppliersRouter = require("./inventoryStockSupplierManagement/routes/supplierRoute.js");
+const inventoryRouter = require("./inventoryStockSupplierManagement/routes/inventoryRoute.js");
+const stockRouter = require("./inventoryStockSupplierManagement/routes/stockRoute.js");
 
 const uri = process.env.MONGODB_URI;
 
@@ -81,7 +81,6 @@ app.post("/upload", upload.single("my_file"), async (req, res) => {
 app.use("/api", router);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
-app.use("/api/student", auth, stdRouter);
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 

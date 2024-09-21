@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Attendance = require('../model/attendance.model')
+const Attendance = require('../model/attendanceModel')
 
 // Route to record attendance
 router.post('/', async (req, res) => {

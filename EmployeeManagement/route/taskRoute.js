@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Task = require('../model/task.model');
+const Task = require('../model/taskModel');
 const auth = require('../../middleware/auth')
 
 // Route to get all tasks

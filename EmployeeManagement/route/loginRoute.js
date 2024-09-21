@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Employee = require('../model/employee.model')
+const Employee = require('../model/employeeModel')
 const Token = require('../../models/tokenModel')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()

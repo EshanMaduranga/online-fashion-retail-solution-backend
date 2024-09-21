@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Employee = require('../model/employee.model');
+const Employee = require('../model/employeeModel');
 const auth = require('../../middleware/auth')
 
 // Route to get all employees

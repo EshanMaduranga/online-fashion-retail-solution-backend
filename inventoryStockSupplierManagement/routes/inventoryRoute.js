@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Inventory = require('../models/inventory.model');
+const Inventory = require('../models/inventoryModel');
 
 // Retrieve all inventory items
 router.post('/', async (req, res) => {
