@@ -10,7 +10,6 @@ const busboy = require("busboy");
 
 const router = require("./router");
 const auth = require("./middleware/auth.js");
-const stdRouter = require("./studentRouter.js");
 const cartRouter = require("./cartRouter.js");
 const orderRouter = require("./orderRouter.js");
 const commentRouter = require("./commentRouter.js");
