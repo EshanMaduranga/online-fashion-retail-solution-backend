@@ -25,6 +25,8 @@ const inventoryRouter = require("./inventoryStockSupplierManagement/routes/inven
 const stockRouter = require("./inventoryStockSupplierManagement/routes/stockRoute.js");
 
 const uri = process.env.MONGODB_URI;
+const port = process.env.PORT;
+const host = process.env.HOST;
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -59,8 +61,9 @@ const connect = async () => {
 
 connect();
 
-const server = app.listen(3001, "127.0.0.1", () => {
+const server = app.listen(port, host, () => {
   console.log("server is lisining to port: ", server.address().port);
+  console.log("host: ", host);
 });
 
 app.post("/upload", upload.single("my_file"), async (req, res) => {
